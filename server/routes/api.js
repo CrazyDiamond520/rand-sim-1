@@ -19,13 +19,22 @@ router.post('/todo', function (req, res) {
 router.put('/todo/:todoID', function (req, res) {
     const todoID = req.params.todoID
 
-    todos.find(t => t.id == todoID).completed = true
+    // todos.find(t => t.id === todoID).complete = true
+    console.log(todoID)
+    const completed = todos.find(t => t.id == todoID)
+    completed.complete = true
     res.send(todos)
 })
 
 router.delete('/todo/:todoID', function (req, res) {
     const todoID = req.params.todoID
-    todos.splice(todoID, 1)
+    console.log(todoID)
+    // todos.splice(todoID , 1)
+    for(let i in todos){
+        if (todos[i].id == todoID){
+            todos.splice(i, 1)
+        }
+    }
     console.log('hello')
     res.send(todos)
 })
